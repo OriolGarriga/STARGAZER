@@ -7,3 +7,4 @@ __Star Gazer__ is an educational robot designed to visualize stars. Using a lase
 
 
 
+Project developed by Joan Estop Cepero, Marçal Muñoz Salat, Gerard Atienza Reig and Oriol Garriga Puig
