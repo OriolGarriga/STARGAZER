@@ -1,4 +1,6 @@
-![image](https://github.com/OriolGarriga/STARGAZER/assets/127389022/d1da4eb6-2b40-4248-a3be-14965086ae94 = 200x100)
+![image](https://github.com/OriolGarriga/STARGAZER/assets/127389022/d1da4eb6-2b40-4248-a3be-14965086ae94 )
+
+<img src="https://github.com/OriolGarriga/STARGAZER/assets/127389022/d1da4eb6-2b40-4248-a3be-14965086ae94" width="200" height="200" />
 
 
 # STARGAZER
