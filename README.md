@@ -6,15 +6,15 @@ __Star Gazer__ is an educational robot designed to visualize stars. Using a lase
 
 # TABLE OF CONTENTS
 - [Hardware Requirements](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#hardware-requirements)
-- Software Requirements
-- Dependencies
-- Documentation
-- Hardware Architecture
-- Images
-- 3D
-- Video
-- References
-- Authors
+- [Software Requirements](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#software-requirements)
+- [Documentation](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#documentation)
+- [Project Module](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#project-module)
+- [Hardware Architecture](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#hardware-architecture)
+- [Images](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#images)
+- [3D](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#3d)
+- [Video](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#video)
+- [References](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#references)
+- [Authors](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#authors)
 
 # Hardware Requirements
 - Raspberry Pi 3b
