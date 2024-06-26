@@ -125,6 +125,8 @@ Hardware:
 ![robot](https://github.com/OriolGarriga/STARGAZER/assets/92922777/526839d6-93e4-4e03-9687-9fa70c12348c)
 
 # 3D
+![3dgiulytramega](https://github.com/OriolGarriga/STARGAZER/assets/104060711/a078ac8e-f5b8-411c-8096-ca4ab9802718)
+
 
 # Video
 
