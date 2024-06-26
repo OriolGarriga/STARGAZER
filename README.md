@@ -10,7 +10,7 @@ __Star Gazer__ is an educational robot designed to visualize stars. Using a lase
 - [Documentation](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#documentation)
 - [Project Module](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#project-module)
 - [Hardware Architecture](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#hardware-architecture)
-- Algorithms
+- [Algorithms](https://github.com/OriolGarriga/STARGAZER/blob/main/README.md#algorithms)
 - [Images](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#images)
 - [3D](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#3d)
 - [Video](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#video)
@@ -123,6 +123,15 @@ Hardware:
 ![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
 
 # Algorithms
+- Text to Speech i Speech to Text
+  Implementat a l'assignatura de Sistemes Multimedia. Basicament utilitzem les APIs de Google de Text to Speech i Speech to Text per poder comunicar-nos amb el robot. És una eina essencial perquè la pantalla no ens enlluerni si estem a les fosques observant els cossos celestes.
+  
+- Detecció de constel·lacions a partir de punts
+  És equivalent a la part de Visió per computadors, tot i que, no ho vam implementar durant l'assignatura, sinó que en hores de Robòtica. L'algoritme rep una imatge de punts i és capaç de detectar quina constel·lació se li pot assemblar més i la dibuixa juntant els punts. Funciona tant carregant una imatge des del dispositiu com fent una fotografia amb la camara del robot i a la app reps la connexió de la constel·lació.
+![detecció_const](https://github.com/OriolGarriga/STARGAZER/assets/92922777/c88b3168-98cf-4bb7-b781-659e66d357dc)
+
+- Pas d'ubicació, temps i coordenades a angles de Stepper Motor
+  
 
 # Images
 ![robot](https://github.com/OriolGarriga/STARGAZER/assets/92922777/526839d6-93e4-4e03-9687-9fa70c12348c)
