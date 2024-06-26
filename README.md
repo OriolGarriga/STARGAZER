@@ -128,8 +128,8 @@ Hardware:
   
 - Detecció de constel·lacions a partir de punts
   És equivalent a la part de Visió per computadors, tot i que, no ho vam implementar durant l'assignatura, sinó que en hores de Robòtica. L'algoritme rep una imatge de punts i és capaç de detectar quina constel·lació se li pot assemblar més i la dibuixa juntant els punts. Funciona tant carregant una imatge des del dispositiu com fent una fotografia amb la camara del robot i a la app reps la connexió de la constel·lació.
-  
-![detecció_const](https://github.com/OriolGarriga/STARGAZER/assets/92922777/c88b3168-98cf-4bb7-b781-659e66d357dc)
+
+![Captura de pantalla 2024-06-26 141651](https://github.com/OriolGarriga/STARGAZER/assets/92922777/a1ab8d51-0c8c-4c05-a0cf-4882d490b0d9)
 
 - Pas d'ubicació, temps i coordenades a angles de Stepper Motor
   Amb les coordenades, data i hora introduït per l'usuari i la RA i DEC de l'estrella que hem cercat, guardat a la base de dades de firestore, podem fer uns calculs per obtenir la azimut i la altitud, la azimut representa l'eix X i la altitud eix Y. Amb aquests calculs el robot sap on s'ha de moure per apuntar a l'estrella que l'usuari ha demanat.
