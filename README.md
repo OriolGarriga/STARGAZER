@@ -122,8 +122,7 @@ Hardware:
 ![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
 
 # Images
-![robot_i_cúpula](https://github.com/OriolGarriga/STARGAZER/assets/92922777/e9d07aa5-03c5-44b0-beb5-28ac7f332fdf)
-![robot_i_cúpula](https://github.com/OriolGarriga/STARGAZER/assets/92922777/e9d07aa5-03c5-44b0-beb5-28ac7f332fdf)
+![robot](https://github.com/OriolGarriga/STARGAZER/assets/92922777/526839d6-93e4-4e03-9687-9fa70c12348c)
 
 # 3D
 
