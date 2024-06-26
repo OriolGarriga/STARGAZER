@@ -109,7 +109,7 @@ Software:
 
 Hardware:
 - [Raspberry Pi 3b](https://www.raspberrypi.com/documentation/)
-- Raspberry Cam
+- [Raspberry Cam](https://github.com/OriolGarriga/STARGAZER/blob/main/Hardware/CAMV2.pdf)
 - x2 Stepper Motor 28BYJ-48
 - x2 Driver ULN2003
 - Power Bank
