@@ -135,6 +135,8 @@ https://sketchfab.com/3d-models/laser-pointer-star-finder-robot-4288273bca724799
 
 https://www.astropractica.org/oper/cnttel/cnttel.htm
 
+http://www.jjrobots.com/
+
 # Authors
 Project developed by 
 - Joan Estop Cepero
