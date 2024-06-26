@@ -129,6 +129,8 @@ Hardware:
 # Video
 
 # References
+https://www.hackster.io/starpointer/sshs-cs-7-3-starpointer-a60eb2
+https://sketchfab.com/3d-models/laser-pointer-star-finder-robot-4288273bca724799888e1a2dc5643dc5
 
 # Authors
 Project developed by 
