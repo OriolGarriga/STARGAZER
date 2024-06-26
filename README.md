@@ -127,7 +127,21 @@ Hardware:
   Implementat a l'assignatura de Sistemes Multimedia. Basicament utilitzem les APIs de Google de Text to Speech i Speech to Text per poder comunicar-nos amb el robot. És una eina essencial perquè la pantalla no ens enlluerni si estem a les fosques observant els cossos celestes.
   
 - Detecció de constel·lacions a partir de punts
-  És equivalent a la part de Visió per computadors, tot i que, no ho vam implementar durant l'assignatura, sinó que en hores de Robòtica. L'algoritme rep una imatge de punts i és capaç de detectar quina constel·lació se li pot assemblar més i la dibuixa juntant els punts. Funciona tant carregant una imatge des del dispositiu com fent una fotografia amb la camara del robot i a la app reps la connexió de la constel·lació.
+  Per a la identificació i emparellament de constel·lacions en imatges, vam abordar dos problemes principals. A continuació es detalla el procés i les solucions implementades per a cadascun d'ells.
+
+1. Detecció de la Constel·lació
+El primer repte consistia a identificar quina constel·lació es mostrava a la imatge presa. Per solucionar-ho, vam decidir implementar una homografia que ens permetés detectar la constel·lació més semblant, a més de determinar els graus de rotació i els ajustos d'escala necessaris per alinear-la exactament amb la constel·lació de referència.
+
+No obstant això, vam trobar un problema amb l'algorisme RANSAC, que necessitava detectar cantonades i punts específics per fer la comparació amb les imatges de referència. Com que les imatges només contenien punts d'estrelles, no trobava prou elements de referència.
+
+Per solucionar aquest problema, vam modificar tant les imatges de referència com la imatge d'entrada afegint totes les connexions entre els punts. D'aquesta manera, les imatges es transformaven en grafes en lloc de només punts, permetent que l'homografia funcionés perfectament.
+
+2. Emparellament d'Estrelles
+Una vegada realitzada l'homografia, el següent pas era emparellar les estrelles de la imatge d'entrada amb les estrelles de la imatge de referència. Per fer-ho, vam utilitzar l'algoritme KDTree, que ens va permetre realitzar l'emparellament de manera eficient.
+
+Després de l'emparellament, ja sabíem quina estrella corresponia a cada punt en la imatge d'entrada. Amb aquesta informació i tenint emmagatzemades a la base de dades les connexions necessàries per dibuixar la constel·lació, vam poder traçar aquestes connexions sobre la imatge original. Així, l'usuari podia veure clarament les connexions de la constel·lació en el seu cel.
+
+Aquest enfocament va permetre una identificació i emparellament precisos de les constel·lacions, millorant significativament la usabilitat i la precisió de les nostres eines d'observació astronòmica.
 
 ![Captura de pantalla 2024-06-26 141651](https://github.com/OriolGarriga/STARGAZER/assets/92922777/a1ab8d51-0c8c-4c05-a0cf-4882d490b0d9)
 
