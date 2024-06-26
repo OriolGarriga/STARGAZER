@@ -1,0 +1,284 @@
+import RPi.GPIO as GPIO
+import time
+import math
+from datetime import datetime, timedelta
+import numpy as np
+import socket
+import threading
+import json
+from picamera2 import Picamera2
+import io
+
+# Configuración de pines para el primer motor (Eje X)
+in1_motor1 = 17
+in2_motor1 = 18
+in3_motor1 = 27
+in4_motor1 = 22
+
+# Configuración de pines para el segundo motor (Eje Y)
+in1_motor2 = 5
+in2_motor2 = 6
+in3_motor2 = 13
+in4_motor2 = 19
+
+# Velocidad de paso (cuidado al reducir esto, puede afectar la velocidad máxima del motor)
+step_sleep = 0.002
+
+laser_pin = 23
+
+# Configuración de los pines GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)  # Desactivar advertencias de GPIO
+GPIO.setup(laser_pin, GPIO.OUT)
+
+def encender_laser():
+    GPIO.output(laser_pin, GPIO.HIGH)
+
+def apagar_laser():
+    GPIO.output(laser_pin, GPIO.LOW)
+
+steps_per_revolution = 513
+def degrees_to_steps(degrees, steps_per_revolution):
+    return int((degrees / 360.0) * steps_per_revolution)
+
+HOST = '0.0.0.0'  # Escuchar en todas las interfaces de red
+PORT = 65432
+
+# Secuencia de activación de los pines para cada motor
+step_sequence1 = [
+    [1, 0, 0, 1],
+    [1, 0, 0, 0],
+    [1, 1, 0, 0],
+    [0, 1, 0, 0],
+    [0, 1, 1, 0],
+    [0, 0, 1, 0],
+    [0, 0, 1, 1],
+    [0, 0, 0, 1]
+]
+
+step_sequence2 = [
+    [1, 0, 0, 1],
+    [0, 0, 0, 1],
+    [0, 0, 1, 1],
+    [0, 0, 1, 0],
+    [0, 1, 1, 0],
+    [0, 1, 0, 0],
+    [1, 1, 0, 0],
+    [1, 0, 0, 0]
+]
+
+# Invertir la secuencia para cambiar la dirección predeterminada de los motores
+step_sequence1_reversed = step_sequence1[::-1]
+step_sequence2_reversed = step_sequence2[::-1]
+
+# Configuración de pines para el primer motor
+motor1_pins = [in1_motor1, in2_motor1, in3_motor1, in4_motor1]
+for pin in motor1_pins:
+    GPIO.setup(pin, GPIO.OUT)
+
+# Configuración de pines para el segundo motor
+motor2_pins = [in1_motor2, in2_motor2, in3_motor2, in4_motor2]
+for pin in motor2_pins:
+    GPIO.setup(pin, GPIO.OUT)
+    
+picam2 = Picamera2()
+
+def take_photo():
+    picam2.configure(picam2.create_still_configuration())
+    picam2.start(2)
+    stream = io.BytesIO()
+    picam2.capture_file(stream, format='jpeg')
+    picam2.stop()
+    stream.seek(0)
+    return stream.read()
+
+def process_data(data):
+    try:
+        # Decodificar el mensaje JSON
+        message = json.loads(data)
+        command = message.get('command')
+        
+        print(f"Comando recibido: {command}")
+        
+        if command == 'take_photo':
+            print("Fent foto")
+            return take_photo()
+        
+        if command == 'point_to_star':
+            ra = float(message.get('ra'))
+            dec = float(message.get('dec'))
+            date = message.get('date')
+            lat = float(message.get('lat'))
+            lon = float(message.get('lon'))
+            time_str = message.get('time')
+            point_to_star(ra, dec, date, lat, lon, time_str, wait_time=5)
+            return b'Success'
+        
+        elif command == 'point_to_constellation':
+            print('Constelacio')
+            ra_list = [float(ra) for ra in message.get('ra')]
+            dec_list = [float(dec) for dec in message.get('dec')]
+            date = message.get('date')
+            lat = float(message.get('lat'))
+            lon = float(message.get('lon'))
+            time_str = message.get('time')
+            print(f"ra_list: {ra_list}")
+            print(f"dec_list: {dec_list}")
+            photo = point_to_constellation(ra_list, dec_list, date, lat, lon, time_str)
+            return photo if photo else b'Success'
+        
+        
+        else:
+            return b'Unknown command'
+    except Exception as e:
+        return f'Error processing data: {e}'.encode()
+
+def calculate_alt_az(ra, dec, date_str, lat, lon, time_str):
+    ra = float(ra)
+    dec = float(dec)
+    # Convertir las cadenas de fecha y hora a un objeto datetime
+    date = datetime.strptime(date_str + ' ' + time_str, '%Y-%m-%d %H:%M')
+
+    # Convertir hora local a UT
+    ut_offset = timedelta(hours=2)  # CEST es UTC+2
+    ut_time = date - ut_offset
+
+    # Calcular GST y luego LST
+    def calculate_gst(d):
+        return 18.697374558 + 24.06570982441908 * d
+
+    # Calcular el número de días desde el 1 de enero de 2000 a las 12:00 UT
+    start_2000 = datetime(2000, 1, 1, 12, 0)
+    days_since_2000 = (ut_time - start_2000).total_seconds() / (24 * 3600)
+
+    # Calcular GST
+    gst = calculate_gst(days_since_2000)
+    gst = gst % 24  # Asegurar que está en el rango [0, 24)
+
+    # Calcular LST
+    lst = gst + lon / 15
+    lst = lst % 24  # Asegurar que está en el rango [0, 24)
+
+    # Convertir LST y RA a grados
+    lst_deg = lst * 15
+    ra_deg = ra * 15
+
+    # Convertir coordenadas a radianes
+    dec_rad = np.radians(dec)
+    lat_rad = np.radians(lat)
+    lst_rad = np.radians(lst_deg)
+    ra_rad = np.radians(ra_deg)
+
+    # Calcular ángulo horario H en radianes
+    H = lst_rad - ra_rad
+
+    # Fórmula para altitud
+    altitude_rad = np.arcsin(np.sin(dec_rad) * np.sin(lat_rad) + np.cos(dec_rad) * np.cos(lat_rad) * np.cos(H))
+    altitude = np.degrees(altitude_rad)
+
+    # Fórmula para azimut
+    azimuth_rad = np.arccos((np.sin(dec_rad) - np.sin(altitude_rad) * np.sin(lat_rad)) / (np.cos(altitude_rad) * np.cos(lat_rad)))
+    azimuth = np.degrees(azimuth_rad)
+
+    # Ajustar azimut según el ángulo horario H
+    if azimuth > 90:
+        azimuth = azimuth - 360
+
+    return altitude, azimuth
+
+def move_to_alt_az(alt, az):
+    print("alt", alt)
+    print("az", az)
+    alt_steps = degrees_to_steps(alt, steps_per_revolution * 3.7)
+    az_steps = -degrees_to_steps(az, steps_per_revolution * 4.6)
+    print("alt: ", alt_steps)
+    print("az: ", az_steps)
+    move_motor(motor1_pins, step_sequence2, step_sequence2_reversed, az_steps)
+    move_motor(motor2_pins, step_sequence1, step_sequence1_reversed, alt_steps)
+
+def move_motor(motor_pins, sequence, sequence_reversed, steps):
+    if steps < 0:
+        sequence = sequence_reversed
+    steps = abs(steps)
+    try:
+        for _ in range(steps):
+            for step in sequence:
+                for pin in range(4):
+                    GPIO.output(motor_pins[pin], step[pin])
+                time.sleep(step_sleep)
+    except KeyboardInterrupt:
+        cleanup()
+        exit(1)
+
+def point_to_star(ra, dec, date, lat, lon, time_str, wait_time):
+    alt, az = calculate_alt_az(ra, dec, date, lat, lon, time_str)
+    print(f'Moviendo a RA: {ra}, Dec: {dec}, Altitud: {alt}°, Azimut: {az}°')
+    move_to_alt_az(alt, az)
+    encender_laser()
+    print(f'Esperando {wait_time} segundos...')
+    time.sleep(wait_time)
+    print('Tiempo de espera completado. Apagando láser y retornando a la posición inicial.')
+    apagar_laser()
+    print('Tornant inici')
+    move_to_alt_az(-alt, -az)
+
+def point_to_constellation(ra_list, dec_list, date, lat, lon, time_str):
+    mid_index = (len(ra_list) // 2)
+    photo = None
+    print("Aqui hauriem de moure constelacions")
+    for i, (ra, dec) in enumerate(zip(ra_list, dec_list)):
+        print(f'Ra: {ra}')
+        print(f'Dec: {dec}')
+        alt, az = calculate_alt_az(ra, dec, date, lat, lon, time_str)
+        print(f'Moviendo a RA: {ra}, Dec: {dec}, Altitud: {alt}°, Azimut: {az}°')
+        move_to_alt_az(alt, az)
+        if mid_index == i:
+            take_photo()
+        encender_laser()
+        print(f'Esperando 3 segundos...')
+        time.sleep(3)
+        apagar_laser()
+        move_to_alt_az(-alt,-az)
+        # Esperar un momento entre movimientos
+        print('Esperant 3 segons')
+        time.sleep(1)
+    print('Tornant inici')
+    return photo
+
+def handle_client_connection(conn):
+    try:
+        data = conn.recv(1024)
+        print(f'Datos recibidos: {data}')
+        response = process_data(data)
+        if isinstance(response, bytes):
+            print(f"Resposta Enviada: {response[:50]}...")
+            photo_size = len(response)
+            conn.sendall(photo_size.to_bytes(4, byteorder='big'))
+            conn.sendall(response)            
+        else:
+            print(f"Resposta Enviada: {response}")
+            conn.sendall(response)
+    except Exception as e:
+        print(f'Error manejando la conexión del cliente: {e}')
+    finally:
+        conn.close()
+
+def start_server():
+    print(f"Iniciando servidor en {HOST}:{PORT}")
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((HOST, PORT))
+        s.listen()
+        print("Servidor listo para aceptar conexiones.")
+        while True:
+            conn, addr = s.accept()
+            print(f"Conexión aceptada de {addr}")
+            client_thread = threading.Thread(target=handle_client_connection, args=(conn,))
+            client_thread.start()
+
+if __name__ == "__main__":
+    try:
+        start_server()
+    except KeyboardInterrupt:
+        print("Servidor detenido manualmente.")
+    finally:
+        GPIO.cleanup()
