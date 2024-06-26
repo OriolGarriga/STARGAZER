@@ -122,7 +122,7 @@ Hardware:
 ![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
 
 # Images
-![WhatsApp Image 2024-06-26 at 10 55 26](https://github.com/OriolGarriga/STARGAZER/assets/92922777/ced44ca8-c3d1-4f7f-adf6-934233bff591)
+![robot_i_cúpula](https://github.com/OriolGarriga/STARGAZER/assets/92922777/631ae297-ea77-437c-836f-13d74aa27810)
 
 # 3D
 
