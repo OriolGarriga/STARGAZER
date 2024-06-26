@@ -108,7 +108,7 @@ Software:
 - [timedelta](https://docs.python.org/es/3/library/datetime.html)
 
 Hardware:
-- Raspberry Pi 3b
+- [Raspberry Pi 3b](https://www.raspberrypi.com/documentation/)
 - Raspberry Cam
 - x2 Stepper Motor 28BYJ-48
 - x2 Driver ULN2003
