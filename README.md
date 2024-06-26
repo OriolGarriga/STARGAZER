@@ -110,8 +110,8 @@ Software:
 Hardware:
 - [Raspberry Pi 3b](https://www.raspberrypi.com/documentation/)
 - [Raspberry Cam](https://github.com/OriolGarriga/STARGAZER/blob/main/Hardware/CAMV2.pdf)
-- x2 Stepper Motor 28BYJ-48
-- x2 Driver ULN2003
+- [x2 Stepper Motor 28BYJ-48](https://github.com/OriolGarriga/STARGAZER/blob/main/Hardware/Stepper%20Motor%20-%2028BYJ-48.PDF)
+- [x2 Driver ULN2003](https://github.com/OriolGarriga/STARGAZER/blob/main/Hardware/Driver%20-%20ULN2003.PDF)
 - Power Bank
 - Laser
 
