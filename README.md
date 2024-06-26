@@ -25,11 +25,103 @@ __Star Gazer__ is an educational robot designed to visualize stars. Using a lase
 - Laser
 
 # Software Requirements
-Fully developed in Python
+For development:
+- Fully developed in Python
 
-# Dependencies
+For running the code:
+- flet
+- firebase_admin
+- credentials
+- firestore
+- storage
+- subprocess
+- translate_v2
+- os
+- texttospeech
+- io
+- pygame
+- speech_recognition
+- threading
+- re
+- json
+- pyrebase
+- requests
+- sys
+- Nominatim
+- EarthLocation
+- AltAz
+- get_sun
+- get_moon
+- get_constellation
+- SkyCoord
+- Time
+- units
+- numpy
+- datetime
+- pytz
+- cv2
+- matplotlib.pyplot
+- combinations
+- KDTree
+- glob
+- os
+- tempfile
+- socket
+- Image
+- datetime
+- timedelta
 
 # Documentation
+Software:
+- flet
+- firebase_admin
+- credentials
+- firestore
+- storage
+- subprocess
+- translate_v2
+- os
+- texttospeech
+- io
+- pygame
+- speech_recognition
+- threading
+- re
+- json
+- pyrebase
+- requests
+- sys
+- Nominatim
+- EarthLocation
+- AltAz
+- get_sun
+- get_moon
+- get_constellation
+- SkyCoord
+- Time
+- units
+- numpy
+- datetime
+- pytz
+- cv2
+- matplotlib.pyplot
+- combinations
+- KDTree
+- glob
+- os
+- tempfile
+- socket
+- Image
+- datetime
+- timedelta
+
+Hardware:
+- Raspberry Pi 3b
+- Raspberry Cam
+- x2 Stepper Motor 28BYJ-48
+- x2 Driver ULN2003
+- Power Bank
+- Laser
 
 # Hardware Architecture
 
