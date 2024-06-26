@@ -5,7 +5,7 @@
 __Star Gazer__ is an educational robot designed to visualize stars. Using a laser and a mobile application, it displays the planets, stars, and constellations selected by the user. Star Gazer points to all the stars and planets that can be seen at the location and time when the user is using it, in addition to showing the description of everything that is pointed to in the application.
 
 # TABLE OF CONTENTS
-- Hardware Requirements
+- [Hardware Requirements](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#hardware-requirements)
 - Software Requirements
 - Dependencies
 - Documentation
