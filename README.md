@@ -116,11 +116,13 @@ Hardware:
 - Laser
 
 # Project Module
+![WhatsApp Image 2024-06-26 at 11 40 23](https://github.com/OriolGarriga/STARGAZER/assets/92922777/9694a249-1c54-4d67-a081-bf3eca16fb1c)
 
 # Hardware Architecture
 ![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
 
 # Images
+![WhatsApp Image 2024-06-26 at 10 55 26](https://github.com/OriolGarriga/STARGAZER/assets/92922777/e5645a8d-0928-410d-9b85-679806fe9c7a)
 
 # 3D
 
