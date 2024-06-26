@@ -1,4 +1,4 @@
-![diagramaSW drawio](https://github.com/OriolGarriga/STARGAZER/assets/92922777/c917f373-baa5-4468-8107-36db1c9c4c17)<img src="https://github.com/OriolGarriga/STARGAZER/assets/127389022/d1da4eb6-2b40-4248-a3be-14965086ae94" width="300" height="300" />
+<img src="https://github.com/OriolGarriga/STARGAZER/assets/127389022/d1da4eb6-2b40-4248-a3be-14965086ae94" width="300" height="300" />
 
 # STARGAZER
 
