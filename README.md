@@ -143,6 +143,7 @@ You can find a folder named [3D](https://github.com/OriolGarriga/STARGAZER/tree/
 ![3dgiulytramega](https://github.com/OriolGarriga/STARGAZER/assets/92922777/f8958bb6-8eff-465c-8ec5-d2a4c90dbb47)
 
 # Video
+https://youtu.be/jfED0y5So1w
 
 # References
 https://www.hackster.io/starpointer/sshs-cs-7-3-starpointer-a60eb2
