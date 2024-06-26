@@ -116,6 +116,7 @@ Hardware:
 - Laser
 
 # Hardware Architecture
+![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
 
 # Images
 
