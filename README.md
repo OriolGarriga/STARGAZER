@@ -10,6 +10,7 @@ __Star Gazer__ is an educational robot designed to visualize stars. Using a lase
 - [Documentation](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#documentation)
 - [Project Module](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#project-module)
 - [Hardware Architecture](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#hardware-architecture)
+- Algorithms
 - [Images](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#images)
 - [3D](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#3d)
 - [Video](https://github.com/OriolGarriga/STARGAZER/tree/main?tab=readme-ov-file#video)
@@ -120,6 +121,8 @@ Hardware:
 
 # Hardware Architecture
 ![fritzing](https://github.com/OriolGarriga/STARGAZER/assets/92922777/8e495ad5-0d3c-4c73-a881-31e9ede22863)
+
+# Algorithms
 
 # Images
 ![robot](https://github.com/OriolGarriga/STARGAZER/assets/92922777/526839d6-93e4-4e03-9687-9fa70c12348c)
