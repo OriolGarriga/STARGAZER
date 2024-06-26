@@ -73,7 +73,7 @@ For running the code:
 
 # Documentation
 Software:
-- flet
+- [flet](https://flet.dev/)
 - firebase_admin
 - credentials
 - firestore
